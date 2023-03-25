@@ -7,9 +7,10 @@ import { ConfigProvider } from 'antd'
 import frFR from 'antd/locale/fr_FR'
 import 'dayjs/locale/fr';
 import dayjs from 'dayjs'
+import i18next from 'i18next'
 import Search from './Search/Search'
-
 dayjs.locale('fr')
+i18next.init()
 
 const App = ({ _arg }) => {
     const queryClient = new QueryClient()
@@ -28,7 +29,6 @@ const App = ({ _arg }) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const rootEl = document.getElementById('root')
-    console.log('ok')
     const root = ReactDOM.createRoot(rootEl)
     root.render(
         <React.StrictMode>
