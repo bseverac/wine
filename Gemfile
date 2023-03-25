@@ -54,6 +54,11 @@ group :development, :test do
 end
 
 group :development do
+  gem "rubocop"
+  gem "rubocop-rails"
+
+  gem "faker"
+  gem "annotate"
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
@@ -64,3 +69,16 @@ group :development do
   # gem "spring"
 end
 
+group :test do
+  # database_cleaner is not required, but highly recommended
+  gem "database_cleaner"
+
+  gem "test-unit"
+
+  # Shoulda helps you write more understandable, maintainable Rails-specific tests using Minitest.
+  gem "mocha"
+  gem "shoulda-context", "~> 2"
+  gem "shoulda-matchers", "~> 4"
+
+  gem "timecop"
+end
