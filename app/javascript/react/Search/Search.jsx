@@ -4,40 +4,46 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { get } from '../common/api'
 import WineCard from './WineCard'
 
+const DEFAULT_PRICE_RANGE = [10, 50]
+const MIN_PRICE = 0
+const MAX_PRICE = 200
+
 export default function Search() {
     const [wineBottles, setWineBottles] = useState([])
 
     useEffect(() => {
-        loadWines(10, 50)
+        loadWines(DEFAULT_PRICE_RANGE)
     }, [])
 
-    const loadWines = (min, max) => {
-        get('/api/v1/wine_bottles', { min_price: min, max_price: max }, (data) => {
+    const loadWines = (range) => {
+        get('/api/v1/wine_bottles', { min_price: range[0], max_price: range[1] }, (data) => {
             setWineBottles(data)
         }, (error) => {
             console.log(error)
         })
     }
 
-    const wineList = wineBottles.length != 0 ? wineBottles.map((wineBottle) => (
+    const wineBottleList = wineBottles.map((wineBottle) => (
         <WineCard key={wineBottle.id} wineBottle={wineBottle} />
-    )) : <Empty style={{margin: 'auto'}} />
+    ))
+
+    const result = wineBottles.length != 0 ? wineBottleList : <Empty style={{margin: 'auto'}} />
 
     const onSliderChange = (value) => {
-        loadWines(value[0], value[1])
+        loadWines(value)
     }
 
     return (
         <Layout style={{textAlign: 'center'}}>
             <h1>{t("Search.title")}</h1>
             <Slider style={{marginBottom: "3em"}}
-                    defaultValue={[10, 50]} 
-                    range min={0} max={200}
+                    defaultValue={DEFAULT_PRICE_RANGE} 
+                    range min={MIN_PRICE} max={MAX_PRICE}
                     onAfterChange={onSliderChange}
                     tooltip={{ open: true, placement: 'bottom', formatter:(value)=> value + '€'}} 
                     />
             <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: "1em" }}>
-                {wineList}
+                {result}
             </div>
         </Layout>
     )
