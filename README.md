@@ -15,3 +15,10 @@ install yarn
 
 # Run server
 `./start-server.sh`
+
+# Auto documentation
+`annotate --models`
+
+# Linter
+`yarn lint`
+`rubocop`
