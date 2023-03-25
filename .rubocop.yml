@@ -1,0 +1,11 @@
+MAX_PRICErequire: rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - Gemfile
+    - Rakefile
+    - bin/*
+    - db/**/*
+
+

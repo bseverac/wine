@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: wine_bottles
@@ -23,7 +25,7 @@ class WineBottle < ApplicationRecord
 
   # handle the case when min_price or max_price is nil
 
-  scope :in_price_range, ->(min_price = 0, max_price = Float::INFINITY) {
-          where(price: (min_price..max_price))
-        }
+  scope :in_price_range, lambda { |min_price = 0, max_price = Float::INFINITY|
+                           where(price: (min_price..max_price))
+                         }
 end
