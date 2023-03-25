@@ -1,4 +1,7 @@
 {
+    "Search": {
+        "title": "Recherche par prix"
+    },
     "message": {
         "error": "Une erreur est survenue"
     }
