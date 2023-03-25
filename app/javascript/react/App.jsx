@@ -7,10 +7,9 @@ import { ConfigProvider } from 'antd'
 import frFR from 'antd/locale/fr_FR'
 import 'dayjs/locale/fr';
 import dayjs from 'dayjs'
-import i18next from 'i18next'
 import Search from './Search/Search'
 dayjs.locale('fr')
-i18next.init()
+import i18n from './locales/i18n' // keep this line
 
 const App = ({ _arg }) => {
     const queryClient = new QueryClient()
