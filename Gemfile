@@ -79,6 +79,7 @@ group :test do
   gem "mocha"
   gem "shoulda-context", "~> 2"
   gem "shoulda-matchers", "~> 4"
+  gem "rails-controller-testing"
 
   gem "timecop"
 end

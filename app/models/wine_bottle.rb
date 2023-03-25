@@ -20,4 +20,10 @@ class WineBottle < ApplicationRecord
   validates :color, inclusion: { in: WINE_COLORS }, allow_nil: true
   validates :rate, inclusion: { in: 0..5 }, allow_nil: true
   validates :price, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
+
+  # handle the case when min_price or max_price is nil
+
+  scope :in_price_range, ->(min_price = 0, max_price = Float::INFINITY) {
+          where(price: (min_price..max_price))
+        }
 end
